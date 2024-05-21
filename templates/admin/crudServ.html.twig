@@ -1,0 +1,32 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block content %}
+
+<div class="row">
+<form action={{ path('app_admin_crud_serv_create') }} method="post" class="col">
+    <label for="nomServ">Le nom du service a créer</label><br>
+    <input type="text" name="_nom" id="nomServ" required maxlength="50" class="form-control"><br>
+    <label for="desServ">La description du service a créer</label><br>
+    <input type="textarea" name="_description" id ="desServ" required maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Créer le service</button>
+</form>
+
+
+<form action={{ path('app_admin_crud_serv_delete') }} method="post" class="col">
+    <label for="nomServ">Le nom du service a supprimer</label><br>
+    <input type="text" name="_nom" id="nomServ" required maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Supprimer le service</button>
+</form>
+
+<form action={{ path('app_admin_crud_serv_update') }} method="post" class="col">
+    <label for="nomServ">Le nom du service a modifier</label><br>
+    <input type="text" name="_nom" id="nomServ" required maxlength="50" class="form-control"><br>
+    <label for="nomServ2">Le nouveau nom du service a modifier</label><br>
+    <input type="text" name="_nom2" id="nomServ2" required maxlength="50" class="form-control"><br>
+    <label for="desServ">La description du service a modifier</label><br>
+    <input type="textarea" name="_description" id ="desServ" required maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Modifier le service</button>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "master.html.twig" %}
+
+{% block title %}
+  Services
+{% endblock %}
+
+
+{% block content %}
+<h3>Formulaire de rapports d'état des animaux:</h3>
+<form action={{ path('app_veterinaire_admin_rapports') }} method="post" class="col">
+  <label for="prenomAni">Le prénom de l'animal sur lequel porte le rapport</label><br>
+  <input type="text" name="_prenom" id="prenomAni" required maxlength="50" class="form-control"><br>
+  <label for="etatAni">L'état de l'animal'</label><br>
+  <input type="text" name="_etat" id="etatAni" required maxlength="50" class="form-control"><br>
+  <label for="nourrAni">La nourriture donnée:</label><br>
+  <input type="text" name="_nourriture" id="nourrAni" required maxlength="50" class="form-control"><br>
+  <label for="grammAni">Le grammage donné</label><br>
+  <input type="text" name="_grammage" id ="grammAni" required maxlength="50" class="form-control"><br>
+  <label for="rapportDate">Entrer une date et l'horaire a laquel l'animal a été nourri:</label>
+  <input
+    id="rapportDate"
+    type="datetime-local"
+    name="_date"
+    value="2024-06-01T08:30" />
+  <br>
+  <br>
+  <p>Détails(facultatif):</p>
+  <div class="form-floating">
+    <textarea class="form-control" placeholder="Vous pouvez rajouter un détail sur l'état de l'animal" id="_detail" style="height: 100px" maxlength="200" name="_detail"></textarea>
+    <label for="floatingTextarea">Vos Commentaires sur son état</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Ajouter un rapport sur l'animal cité</button>
+</form>
+
+<form action={{ path('app_veterinaire_admin_commHab') }} method="post" class="col">
+  <label for="nomHab">Le nom de l'habitat sur lequel déposer un commentaire</label><br>
+  <input type="text" name="_nom" id="nomHab" required maxlength="50" class="form-control"><br>
+  <label for="comHab">Le commentaire en question</label><br>
+  <input type="textarea" name="_commentaire" id ="comHab" maxlength="200" class="form-control"><br>
+  <button type="submit" class="btn btn-primary">Déposer un commentaire</button>
+</form>
+
+<div class="container">
+  <h3>La nourriture donnée par animal:</h3>
+  {% for rapport in rapports %}
+  <ul>
+    <p>{{ rapport.prenom }}</p>
+    <li>{{ rapport.nourriture }}</li>
+  </ul>
+  {% endfor %}
+</div>
+
+{% endblock %}

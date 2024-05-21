@@ -1,0 +1,26 @@
+{% extends "master.html.twig" %}
+
+{% block title %}
+  Contact
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+<form action="{{ path('app_mailer_sendmailcontact') }}" method="post">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required maxlength="50" name="_email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea2" class="form-label">Objet de votre message: </label>
+    <input id="exampleFormControlTextarea2" class="form-control" rows="3" required maxlength="50" name="_object"></input>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Ce que vous souhaitez nous faire parvenir : </label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required maxlength="250" name="_textarea"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Send Thoughts</button>
+</form>
+</div>
+{% endblock %}

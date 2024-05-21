@@ -1,0 +1,78 @@
+{% extends "master.html.twig" %}
+
+{% block title %}
+  Services
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <h3>Formulaire de modification des services :</h3>
+  <br>
+  <form action={{ path('app_admin_crud_serv_create') }} method="post" class="col">
+      <label for="nomServ">Le nom du service a créer</label><br>
+      <input type="text" name="_nom" id="nomServ" required maxlength="50" class="form-control"><br>
+      <label for="desServ">La description du service a créer</label><br>
+      <input type="textarea" name="_description" id ="desServ" required maxlength="50" class="form-control"><br>
+      <button type="submit" class="btn btn-primary">Créer le service</button>
+  </form>
+  
+  
+  <form action={{ path('app_admin_crud_serv_delete') }} method="post" class="col">
+      <label for="nomServ">Le nom du service a supprimer</label><br>
+      <input type="text" name="_nom" id="nomServ" required maxlength="50" class="form-control"><br>
+      <button type="submit" class="btn btn-primary">Supprimer le service</button>
+  </form>
+  
+  <form action={{ path('app_admin_crud_serv_update') }} method="post" class="col">
+      <label for="nomServ">Le nom du service a modifier</label><br>
+      <input type="text" name="_nom" id="nomServ" required maxlength="50" class="form-control"><br>
+      <label for="nomServ2">Le nouveau nom du service a modifier</label><br>
+      <input type="text" name="_nom2" id="nomServ2" required maxlength="50" class="form-control"><br>
+      <label for="desServ">La description du service a modifier</label><br>
+      <input type="textarea" name="_description" id ="desServ" required maxlength="50" class="form-control"><br>
+      <button type="submit" class="btn btn-primary">Modifier le service</button>
+  </form>
+  </div>
+
+  <h3>Tout les avis :</h3>
+  {% for avi in avis %}
+  <form action={{ path('app_employe_admin_avis') }} method="post">
+    Pseudo : {{ avi.pseudo }}
+    <br>
+    Son Avis: {{ avi.commentaire }}
+    <br>
+    {% if avi.is_visible %}
+      <p>Le commentaire est visible sur la page d'accueil.</p>
+    {% else %}
+      <p>Le commentaire n'est pas visible sur la page d'accueil.</p>
+    {% endif %}
+    <input type="hidden" name="_value" value={{ avi.id }}/>
+    <button class="btn btn-secondary" type="submit">Make Visible or Invisible on Home Page</button>
+  </form>
+  {% endfor %}
+  
+  <h3>Formulaire pour ajouter l'alimentation donner a un animal</h3>
+  <form action={{ path('app_employe_admin_rapports') }} method="post" class="col">
+    <select name="_prenom" class="form-select" aria-label="animalLabel">
+      <option selected>Open this select menu</option>
+      {% for animal in animals %}
+        <option value={{ animal.prenom }}>{{ animal.prenom }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="rapportDate">Entrer une date et l'horaire a laquel l'animal a été nourri:</label>
+    <input
+      id="rapportDate"
+      type="datetime-local"
+      name="_date"
+      value="2024-06-01T08:30" />
+    <br>
+    <label for="nourrAni">La nourriture donnée</label><br>
+    <input type="text" name="_nourriture" id ="nourrAni" maxlength="50" class="form-control" required><br>
+    <label for="gramAni">Le grammage</label><br>
+    <input type="text" name="_grammage" id ="gramAni" maxlength="50" class="form-control" required><br>
+    <button type="submit" class="btn btn-primary">Ajouter une alimentation donnée a un animal</button>
+  </form>
+
+{% endblock %}

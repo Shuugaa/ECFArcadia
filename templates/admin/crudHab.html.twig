@@ -1,0 +1,36 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block content %}
+
+<div class="row">
+<form action={{ path('app_admin_crud_hab_create') }} method="post" class="col">
+    <label for="nomHab">Le nom de l'habitat a créer</label><br>
+    <input type="text" name="_nom" id="nomHab" required maxlength="50" class="form-control"><br>
+    <label for="desHab">La description de l'habitat a créer</label><br>
+    <input type="textarea" name="_description" id ="desHab" required maxlength="50" class="form-control"><br>
+    <label for="comHab">Le commentaire de l'habitat a créer</label><br>
+    <input type="textarea" name="_commentaire" id ="comHab" maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Créer l'habitat</button>
+</form>
+
+
+<form action={{ path('app_admin_crud_hab_delete') }} method="post" class="col">
+    <label for="nomHab">Le nom de l'habitat a supprimer (Veillez a ne pas supprimer un Habitat s'il existe des animaux presents...)</label><br>
+    <input type="text" name="_nom" id="nomHab" required maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Supprimer l'habitat</button>
+</form>
+
+<form action={{ path('app_admin_crud_hab_update') }} method="post" class="col">
+    <label for="nomHab">Le nom de l'habitat a modifier</label><br>
+    <input type="text" name="_nom" id="nomHab" required maxlength="50" class="form-control"><br>
+    <label for="nomHab2">Le nouveau nom si il y en a un:</label><br>
+    <input type="text" name="_nom2" id="nomHab2" required maxlength="50" class="form-control"><br>
+    <label for="desHab">La description de l'habitat a modifier</label><br>
+    <input type="textarea" name="_description" id ="desHab" required maxlength="50" class="form-control"><br>
+    <label for="comHab">Le commentaire de l'habitat a modifier</label><br>
+    <input type="textarea" name="_commentaire" id ="comHab" maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Modifier un habitat</button>
+</form>
+</di>
+
+{% endblock %}

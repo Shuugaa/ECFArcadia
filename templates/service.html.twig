@@ -1,0 +1,25 @@
+{% extends "master.html.twig" %}
+
+{% block title %}
+  Services
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <h1>Nos Différents Services</h1>
+</div>
+
+  <div class="container">
+    {%if services is defined%}
+
+      {% for service in services%}
+        <div id="{{ service.nom }}" class="container">
+        <h3>{{ service.nom }}</h3>
+          <p class="row">{{ service.description }}</p>
+        </div>
+      {% endfor %}
+    
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "admin/admin.html.twig" %}
+
+{% block title %}
+Authenticated Page
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<h2 class="col">Formulaire de création d'utilisateur</h2>
+<form action={{ path('app_createUser') }} method="post" class="col">
+  <div class="form-group row">
+    <label for="_username" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="username" name="_username" placeholder="Mail">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password" name="_password" placeholder="Password">
+    </div>
+  </div>
+  <fieldset class="form-group">
+    <div class="form-group row">
+      <div class="col-sm-2">Vétérinaire</div>
+        <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="_roleArray" name="_roleArray[]" value="ROLE_VETERINAIRE">
+          <label class="form-check-label" for="gridCheck1">
+            Vétérinaire
+          </label>
+        </div>
+      </div>
+      <div class="col-sm-2">Employé</div>
+        <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="_roleArray" name="_roleArray[]" value="ROLE_EMPLOYE" checked>
+          <label class="form-check-label" for="gridCheck1">
+            Employé
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Create User</button>
+    </div>
+  </div>
+</form>
+<h2 class="col">Formulaire de suppression d'utilisateur</h2>
+<form action={{ path('app_deleteUser') }} method="post"  class="col">
+  <input type="text" name="_username" class="form-control">
+  <button type="submit"class="btn btn-primary">Delete User</button>
+</form>
+</div>
+
+
+  {% if username is defined %}
+    <div class="row">
+      <p class="col">L'utilisateur {{ username }} a bien été {{ phrase }}.</p>
+    </div>
+  {% endif %}
+  <div class="container">
+  {% if users is defined %}
+    <div class="row">
+      <h2>Members</h2>
+        <ol>
+        {% for user in users %}
+          {% if user.roles[0] == "ROLE_ADMIN" %}
+          {% else %}
+            <li>{{ user.username }}</li>
+          {% endif %}
+        {% endfor %}
+        </ol>
+    </div>
+  {% endif %}
+  </div>
+
+  <div class="container">
+  {% if rapports is defined %}
+    <div class="row">
+      <h2>Rapports du vétérinaire</h2>
+        <ol class="col">
+        {% for rapport in rapports %}
+          <p>{{ rapport.prenom }} le {{ rapport.date|date("d/m/Y") }}:</p>
+          <li>{{ rapport.detail }}</li>
+        {% endfor %}
+        </ol>
+    </div>
+  {% endif %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "master.html.twig" %}
+
+{% block title %}
+  Les Différents Habitats
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <h1>Nos Différents Habitats</h1>
+</div>
+
+  <div class="container">
+    {% if habitats is defined %}
+
+      {% for habitat in habitats %}
+        <p class="d-inline-flex gap-1">
+          <a data-bs-toggle="collapse" href="#{{ habitat.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+            {{ habitat.nom }}
+          </a>
+        </p>
+        <div class="collapse" id="{{ habitat.id }}">
+          <div class="card card-body">
+            <p class="row">{{ habitat.description }}</p>
+            {% for animal in animals %}
+              {% if animal.habitat_id == habitat.id %}
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ animal.prenom }}" id="{{ animal.id }}Button">
+                  {{ animal.prenom }}
+                </button>
+
+                <script>
+                  xhttp = new XMLHttpRequest()
+                  document.getElementById('{{ animal.id }}' + "Button").addEventListener('click', () => {
+                    console.log('{{ animal.prenom }}')
+                    xhttp.open("POST", "/mongoDb/updateMongo", true)
+                    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+                    vars = "_prenom={{ animal.prenom }}&_cpt=1"
+                    xhttp.send(vars)
+                  })
+                </script>
+
+                <!-- Modal -->
+                <div class="modal fade" id="{{ animal.prenom }}" tabindex="-1" aria-labelledby="{{ animal.prenom }}Label" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="{{ animal.prenom }}Label">{{ animal.prenom }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Sa race : {{ animal.race }}</p>
+                        <br>
+                        <p>Son état : {{ animal.etat }}</p>
+                        <br>
+                        <p>Le commentaire du vétérinaire sur cet habitat: {{ habitat.getCommentaireHabitat() }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <br>
+      {% endfor %}
+    
+    {% endif %}
+  </div>
+
+{% endblock %}
+
+{% block importmap %}
+  {{ importmap('app') }}
+{% endblock %}

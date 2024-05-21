@@ -1,0 +1,44 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block content %}
+
+<div class="row">
+<form action={{ path('app_admin_crud_ani_create') }} method="post" class="col">
+    <label for="prenomAni">Le prénom de l'animal a créer</label><br>
+    <input type="text" name="_prenom" id="prenomAni" required maxlength="50" class="form-control"><br>
+    <label for="etatAni">L'état de l'animal a créer</label><br>
+    <input type="text" name="_etat" id ="etatAni" required maxlength="50" class="form-control"><br>
+    <label for="raceAni">La race de l'animal a créer</label><br>
+    <input type="text" name="_race" id ="raceAni" maxlength="50" class="form-control"><br>
+    <label for="habAni">L'habitat dans lequel évolue l'animal</label><br>
+    <input type="text" name="_habitat" id ="habAni" maxlength="50" class="form-control" required><br>
+    <button type="submit" class="btn btn-primary">Créer l'Animal</button>
+</form>
+
+
+<form action={{ path('app_admin_crud_ani_delete') }} method="post" class="col">
+    <label for="prenomAni">Le prénom de l'animal a supprimer</label><br>
+    <input type="text" name="_prenom" id="prenomAni" required maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Supprimer l'animal</button>
+</form>
+
+<form action={{ path('app_admin_crud_ani_update') }} method="post" class="col">
+    <label for="prenomAni">Le prénom de l'animal a modifier</label><br>
+    <input type="text" name="_prenom" id="prenomAni" required maxlength="50" class="form-control"><br>
+    <label for="prenomAni2">Son nouveau prénom si il y en a un:</label><br>
+    <input type="text" name="_prenom2" id="prenomAni2" required maxlength="50" class="form-control"><br>
+    <label for="etatAni">L'état de l'animal a modifier</label><br>
+    <input type="text" name="_etat" id ="etatAni" required maxlength="50" class="form-control"><br>
+    <label for="raceAni">La race de l'animal a modifier</label><br>
+    <input type="text" name="_race" id ="raceAni" maxlength="50" class="form-control"><br>
+    <button type="submit" class="btn btn-primary">Modifier l'Animal</button>
+</form>
+</div>
+
+<div class="container">
+    {% if error is defined %}
+        <p> La création/mise a jour de l'animal a échouée car l'habitat est introuvable ou inexistant. </p>
+    {% endif %}
+</div>
+
+{% endblock %}
