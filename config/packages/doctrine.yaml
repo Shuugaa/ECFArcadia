@@ -4,8 +4,8 @@ doctrine:
         default_connection: default
         connections:
             default:
-                driver: mysqli
-                url: 'mysql://localhost'
+                driver: pdo_mysql
+                url: 'mysql://127.0.0.1'
                 server_version: '8.0.33-cluster'
                 charset: utf8mb4
                 default_table_options:
