@@ -65,42 +65,6 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/newUser/modifyPass', name:'app_modifyAdmin')]
-    public function modifyAdmin(UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, UtilisateurRepository $userRepository, MailerInterface $mailer): Response
-    {
-        if ($this->isGranted('ROLE_ADMIN') == false) {
-            return $this->render('failedToAuth.html.twig');
-        }
-
-        $correctId = $userRepository->findOneOccurence($_POST['_username']);
-        $correctPass = $userRepository->findPassword($_POST['_username']);
-        if(password_verify($_POST['_password'], $correctPass)) {
-            $user = $entityManager->getRepository(Utilisateur::class)->find($correctId);
-            $user->setUsername('shuugaa789@gmail.com');
-            $plaintextPassword = $_POST['_password2'];
-        
-            // hash the password (based on the security.yaml config for the $user class)
-            $hashedPassword = $passwordHasher->hashPassword(
-                $user,
-                $plaintextPassword
-            );
-            $user->setPassword($hashedPassword);
-    
-            // tell Doctrine you want to (eventually) save the Product (no queries yet)
-            $entityManager->persist($user);
-    
-            // actually executes the queries (i.e. the INSERT query)
-            $entityManager->flush();
-        }
-        // ... e.g. get the user data from a registration form
-
-        return $this->render('admin/auth.html.twig', [
-            'username' => $_POST['_username'],
-            'phrase' => "modifier",
-            'users' => $userRepository->findAllUsers(),
-        ]);
-    }
-
     #[Route('/admin/newUser', name:'app_createUser')]
     public function createUser(UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, UtilisateurRepository $userRepository, MailerInterface $mailer): Response
     {
@@ -164,7 +128,7 @@ class SecurityController extends AbstractController
             return $this->render('failedToAuth.html.twig');
         }
 
-        if ($userRepository->checkUsernameExists($_POST['_username']) && $_POST['_username'] !== "admin") {
+        if ($userRepository->checkUsernameExists($_POST['_username']) && $_POST['_username'] !== "shuugaa789@gmail.com") {
             $id = $userRepository->findOneOccurence($_POST['_username']);
             $user = $entityManager->getRepository(Utilisateur::class)->find($id);
             $entityManager->remove($user);
