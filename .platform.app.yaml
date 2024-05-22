@@ -9,6 +9,9 @@ name: app
 # to find the supported versions for the 'php' type.
 type: 'php:8.3'
 
+dependencies:
+    php:
+        composer/composer: '^2'
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
 # indicates that the mount point will point to a local directory on the
@@ -28,7 +31,7 @@ disk: 512
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form '<service name>:<endpoint name>'.
 relationships:
-    mysql: 'database:mysql'
+    mysql: 'mysql:mysql'
 
 
 hooks:
