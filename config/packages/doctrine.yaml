@@ -5,6 +5,8 @@ doctrine:
         connections:
             default:
                 driver: pdo_mysql
+                user: root
+                password: null
                 url: 'mysql://127.0.0.1:3306'
                 server_version: '8.0.33-cluster'
                 charset: utf8mb4
@@ -36,6 +38,9 @@ doctrine:
         controller_resolver:
             auto_mapping: true
 
+        query_cache_driver:
+            type: service
+            id: App\ORM\MyCacheService
 when@test:
     doctrine:
         dbal:
