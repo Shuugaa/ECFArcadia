@@ -1,5 +1,5 @@
 # The name of this app. Must be unique within a project.
-name: app
+name: arcadia
 
 # The runtime the application uses. The 'type' key defines the base container
 # image that will be used to run the application. There is a separate base
@@ -12,6 +12,12 @@ type: 'php:8.3'
 dependencies:
     php:
         composer/composer: '^2'
+        symfony/maker-bundle: '^1'
+        doctrine/dbal: '^3'
+        doctrine/orm: '*'
+        doctrine/doctrine-bundle: '*'
+        doctrine/doctrine-migrations-bundle: '*'
+
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
 # indicates that the mount point will point to a local directory on the
