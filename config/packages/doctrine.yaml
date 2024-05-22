@@ -4,27 +4,17 @@ doctrine:
         default_connection: default
         connections:
             default:
-                url: '%env(resolve:DATABASE_URL)%'
+                url: 'localhost:3306'
                 driver: pdo_mysql
                 logging: false
                 profiling: false
                 profiling_collect_backtrace: false
                 profiling_collect_schema_errors: true
-                #user: web
-                #password: secret
-                #host: 127.0.0.1
-                #dbname: arcadia
-                #port: 3306
-                # url: 'mysql://127.0.0.1:3306'
                 server_version: '8.0.33-cluster'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
-                # options:
-                #    MYSQL_ATTR_SSL_CA : 'env(resolve:%ca_cert%)'
-                #    MYSQL_ATTR_SSL_KEY : 'env(resolve:%private_key%)'
-                #    MYSQL_ATTR_SSL_CERT : 'env(resolve:%public_cert%)'
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
