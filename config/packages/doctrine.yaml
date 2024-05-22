@@ -4,13 +4,13 @@ doctrine:
         default_connection: default
         connections:
             default:
-                url: '%env(resolve:DATABASE_URL)%'
+                url: 'mysql://user:@mysql.internal:3306/main'
                 driver: pdo_mysql
         #        logging: false
         #        profiling: false
         #        profiling_collect_backtrace: false
         #        profiling_collect_schema_errors: true
-                server_version: '8.0.33-cluster'
+                server_version: '11.0'
         #        charset: utf8mb4
         #        default_table_options:
         #            charset: utf8mb4
