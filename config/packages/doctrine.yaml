@@ -6,7 +6,7 @@ doctrine:
             default:
                 driver: pdo_mysql
                 url: 'mysql://localhost'
-                server_version: '8.0.33'
+                server_version: '8.0.33-cluster'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
