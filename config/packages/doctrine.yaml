@@ -16,10 +16,10 @@ doctrine:
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
-                options:
-                    MYSQL_ATTR_SSL_CA : 'env(resolve:%ca_cert%)'
-                    MYSQL_ATTR_SSL_KEY : 'env(resolve:%private_key%)'
-                    MYSQL_ATTR_SSL_CERT : 'env(resolve:%public_cert%)'
+                # options:
+                #    MYSQL_ATTR_SSL_CA : 'env(resolve:%ca_cert%)'
+                #    MYSQL_ATTR_SSL_KEY : 'env(resolve:%private_key%)'
+                #    MYSQL_ATTR_SSL_CERT : 'env(resolve:%public_cert%)'
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
