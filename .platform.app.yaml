@@ -18,15 +18,22 @@ dependencies:
         doctrine/doctrine-bundle: '*'
         doctrine/doctrine-migrations-bundle: '*'
 
+    runtime:
+        extensions:
+            - iconv
+            - mbstring
+            - pdo_mysql
+            - mysqli
+            - ctype
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
 # indicates that the mount point will point to a local directory on the
 # application container. The 'source_path' specifies the subdirectory
 # from within the source that the mount should point at. 
 mounts:
-  'var':
-    source: local
-    source_path: var
+  #'var':
+  #  source: local
+  #  source_path: var
   'web/uploads':
     source: local
     source_path: uploads
@@ -60,4 +67,5 @@ web:
   locations: 
     '/': 
       root: "public"
+      expires: 1h
       passthru: "/index.php"
