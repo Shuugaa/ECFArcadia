@@ -4,12 +4,17 @@ doctrine:
         default_connection: default
         connections:
             default:
+                url: '%env(resolve:DATABASE_URL)%'
                 driver: pdo_mysql
-                user: web
-                password: secret
-                host: 127.0.0.1
-                dbname: arcadia
-                port: 3306
+                logging: false
+                profiling: false
+                profiling_collect_backtrace: false
+                profiling_collect_schema_errors: true
+                #user: web
+                #password: secret
+                #host: 127.0.0.1
+                #dbname: arcadia
+                #port: 3306
                 # url: 'mysql://127.0.0.1:3306'
                 server_version: '8.0.33-cluster'
                 charset: utf8mb4
