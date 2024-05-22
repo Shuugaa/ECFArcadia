@@ -31,9 +31,9 @@ runtime:
 # application container. The 'source_path' specifies the subdirectory
 # from within the source that the mount should point at. 
 mounts:
-  'var':
+  '/var':
     source: local
-    source_path: 'var/cache'
+    source_path: var
   'web/uploads':
     source: local
     source_path: uploads
