@@ -54,6 +54,14 @@ Authenticated Page
   <button type="submit"class="btn btn-primary">Delete User</button>
 </form>
 </div>
+<h2 class="col">Formulaire de modification du mdp Admin</h2>
+<form action={{ path('app_modifyAdmin') }} method="post"  class="col">
+  <input type="email" name="_username" class="form-control" required maxlength="50">
+  <input type="password" class="form-control" id="password" name="_password" placeholder="Initial" maxlength="50">
+  <input type="password" class="form-control" id="password2" name="_password2" placeholder="Resultat" maxlength="50">
+  <button type="submit"class="btn btn-primary">Delete User</button>
+</form>
+</div>
 
 
   {% if username is defined %}

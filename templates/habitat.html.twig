@@ -30,17 +30,6 @@
                   {{ animal.prenom }}
                 </button>
 
-                <script>
-                  xhttp = new XMLHttpRequest()
-                  document.getElementById('{{ animal.id }}' + "Button").addEventListener('click', () => {
-                    console.log('{{ animal.prenom }}')
-                    xhttp.open("POST", "/mongoDb/updateMongo", true)
-                    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-                    vars = "_prenom={{ animal.prenom }}&_cpt=1"
-                    xhttp.send(vars)
-                  })
-                </script>
-
                 <!-- Modal -->
                 <div class="modal fade" id="{{ animal.prenom }}" tabindex="-1" aria-labelledby="{{ animal.prenom }}Label" aria-hidden="true">
                   <div class="modal-dialog">
