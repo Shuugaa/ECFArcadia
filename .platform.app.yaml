@@ -33,7 +33,7 @@ runtime:
 mounts:
   'var':
     source: local
-    source_path: var
+    source_path: tmp
   'web/uploads':
     source: local
     source_path: uploads
